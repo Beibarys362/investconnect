@@ -23,7 +23,10 @@ ALLOWED_HOSTS = [
 
 
 # CSRF trusted origins
-CSRF_TRUSTED_ORIGINS = ['https://*.railway.app']
+CSRF_TRUSTED_ORIGINS = [
+    'https://investconnect-production.up.railway.app',
+    'https://*.railway.app'
+]
 
 
 
