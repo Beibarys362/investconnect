@@ -16,12 +16,15 @@ DEBUG = os.environ.get('DEBUG', 'true').lower() == 'true'
 
 ALLOWED_HOSTS = [
     'investconnect-production.up.railway.app',
+    '.railway.app',
     '127.0.0.1',
     'localhost'
 ]
 
+
 # CSRF trusted origins
 CSRF_TRUSTED_ORIGINS = ['https://*.railway.app']
+
 
 
 # Application definition
