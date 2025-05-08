@@ -1,4 +1,5 @@
-web: gunicorn investors.wsgi --log-file -
+web: gunicorn investors.wsgi --bind 0.0.0.0:$PORT --log-file -
+
 
 
 
