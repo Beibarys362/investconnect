@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ project.name }}{% endblock %}
+
+{% block content %}
+<div class="max-w-5xl mx-auto py-10">
+    <h1 class="text-3xl font-bold text-gray-800 mb-6">{{ project.name }}</h1>
+
+    {% if project.image %}
+        <img src="{{ project.image.url }}" alt="{{ project.name }}" class="w-full h-64 object-cover rounded-lg mb-6">
+    {% endif %}
+
+    <div class="text-gray-700 space-y-4">
+        <p><strong>Описание:</strong> {{ project.description }}</p>
+        <p><strong>Необходимая сумма:</strong> {{ project.required_amount }} ₸</p>
+        <p><strong>Срок реализации:</strong> {{ project.duration }} месяцев</p>
+        <p><strong>Ожидаемая доходность:</strong> {{ project.roi }}%</p>
+        <p><strong>Категория:</strong> {{ project.get_category_display }}</p>
+        <p><strong>Контактное лицо:</strong> {{ project.contact_name }}</p>
+        <p><strong>Email:</strong> {{ project.contact_email }}</p>
+        <p><strong>Телефон:</strong> {{ project.contact_phone }}</p>
+        <p><strong>Сайт:</strong> <a href="{{ project.website }}" target="_blank" class="text-purple-600 hover:underline">{{ project.website }}</a></p>
+    </div>
+</div>
+{% endblock %}

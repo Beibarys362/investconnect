@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}InvestConnect{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .gradient-bg { background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #9333ea 100%); }
+        .card-hover:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04); }
+        .animated-underline { position: relative; display: inline-block; }
+        .animated-underline::after { content: ''; position: absolute; width: 0; height: 2px; bottom: 0; left: 0; background-color: #7c3aed; transition: width 0.3s ease; }
+        .animated-underline:hover::after { width: 100%; }
+        .feature-icon { transition: all 0.3s ease; }
+        .feature-card:hover .feature-icon { transform: scale(1.1); }
+    </style>
+</head>
+<body class="font-sans antialiased text-gray-800">
+
+    <!-- Навигация -->
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <i class="fas fa-handshake text-purple-600 text-2xl mr-2"></i>
+                        <span class="text-xl font-bold text-gray-900">InvestConnect</span>
+                    </div>
+                </div>
+                <div class="hidden md:ml-6 md:flex md:items-center md:space-x-8">
+                    <a href="{% url 'index' %}" class="animated-underline px-3 py-2 text-sm font-medium">Главная</a>
+                    <a href="{% url 'new_project' %}" class="animated-underline px-3 py-2 text-sm font-medium">Добавить проект</a>
+                </div>
+
+                <!-- Блок логина/выхода -->
+                <div class="flex items-center">
+{% if user.is_authenticated %}
+    {% if user.usersubscription.is_pro %}
+        <span class="text-green-600 font-semibold">У вас PRO-версия</span>
+    {% else %}
+        <a href="{% url 'plan_detail' %}" class="px-4 py-2 bg-purple-600 text-white rounded">Купить PRO</a>
+    {% endif %}
+    <form method="post" action="{% url 'logout' %}" class="inline">
+        {% csrf_token %}
+        <button type="submit" class="ml-2 px-4 py-2 bg-red-500 text-white rounded">Выйти</button>
+    </form>
+{% else %}
+    <a href="{% url 'account' %}" class="px-4 py-2 bg-purple-600 text-white rounded">Войти</a>
+    <a href="{% url 'account' %}" class="px-4 py-2 bg-purple-100 text-purple-700 rounded">Регистрация</a>
+{% endif %}
+
+                </div>
+            </div>
+        </div>
+    </nav>
+{% if messages %}
+  <div class="fixed top-4 right-4 space-y-2 z-50">
+    {% for message in messages %}
+      <div class="px-4 py-3 rounded-md text-white
+                  {% if message.tags == 'success' %} bg-green-500
+                  {% elif message.tags == 'error' %} bg-red-500
+                  {% else %} bg-blue-500
+                  {% endif %}">
+        {{ message }}
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
+
+    <!-- Контент -->
+    <main class="py-10">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </main>
+
+</body>
+</html>

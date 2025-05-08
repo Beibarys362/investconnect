@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}Все проекты{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto py-10">
+    <h1 class="text-3xl font-bold text-gray-800 mb-8 text-center">Все проекты</h1>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {% for project in projects %}
+            <div class="bg-white rounded-xl shadow-md hover:shadow-lg transition flex flex-col h-full">
+                <!-- Картинка проекта -->
+                {% if project.image %}
+                    <img src="{{ project.image.url }}" alt="{{ project.name }}" class="w-full h-64 md:h-72 lg:h-80 object-cover rounded-t-xl transition-transform duration-300 hover:scale-105">
+                {% else %}
+                    <div class="w-full h-64 md:h-72 lg:h-80 bg-gray-200 flex items-center justify-center rounded-t-xl">
+                        <span class="text-gray-500">Нет изображения</span>
+                    </div>
+                {% endif %}
+
+                <div class="p-6 flex flex-col flex-grow justify-between">
+                    <div>
+                        <h2 class="text-2xl font-semibold text-purple-700 mb-2">{{ project.name }}</h2>
+                        <p class="text-gray-600 mb-4">{{ project.description|truncatewords:20 }}</p>
+
+                        <div class="text-gray-700 text-sm space-y-1">
+                            <p><strong>Сумма:</strong> {{ project.required_amount }} ₸</p>
+                            <p><strong>Срок:</strong> {{ project.duration }} месяцев</p>
+                            <p><strong>Категория:</strong> {{ project.get_category_display }}</p>
+                            <p><strong>Контакт:</strong> {{ project.contact_name }}</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-6">
+                        <a href="{% url 'project_detail' project.id %}" class="inline-block bg-purple-600 hover:bg-purple-700 text-white text-sm font-medium py-2 px-4 rounded-md transition">
+                            Подробнее
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <p class="col-span-3 text-center text-gray-500">Проекты пока не добавлены.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

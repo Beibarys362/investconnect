@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InvestConnect - Платформа для поиска инвесторов и партнеров</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #9333ea 100%);
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .animated-underline {
+            position: relative;
+            display: inline-block;
+        }
+        .animated-underline::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #7c3aed;
+            transition: width 0.3s ease;
+        }
+        .animated-underline:hover::after {
+            width: 100%;
+        }
+        .feature-icon {
+            transition: all 0.3s ease;
+        }
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body class="font-sans antialiased text-gray-800">
+    <!-- Навигация -->
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <i class="fas fa-handshake text-purple-600 text-2xl mr-2"></i>
+                        <span class="text-xl font-bold text-gray-900">InvestConnect</span>
+                    </div>
+                </div>
+                <div class="hidden md:ml-6 md:flex md:items-center md:space-x-8">
+                    <a href="#features" class="animated-underline px-3 py-2 text-sm font-medium">Возможности</a>
+                    <a href="#how-it-works" class="animated-underline px-3 py-2 text-sm font-medium">Как это работает</a>
+                    <a href="#testimonials" class="animated-underline px-3 py-2 text-sm font-medium">Отзывы</a>
+                    <a href="#pricing" class="animated-underline px-3 py-2 text-sm font-medium">Тарифы</a>
+                    <a href="{% url 'project_list' %}" class="animated-underline px-3 py-2 text-sm font-medium">Проекты</a>
+                </div>
+                <div class="flex items-center">
+{% if user.is_authenticated %}
+    {% if user.usersubscription.is_pro %}
+        <span class="text-green-600 font-semibold">У вас PRO-версия</span>
+    {% else %}
+        <a href="{% url 'plan_detail' %}" class="px-4 py-2 bg-purple-600 text-white rounded">Купить PRO</a>
+    {% endif %}
+    <form method="post" action="{% url 'logout' %}" class="inline">
+        {% csrf_token %}
+        <button type="submit" class="ml-2 px-4 py-2 bg-red-500 text-white rounded">Выйти</button>
+    </form>
+{% else %}
+    <a href="{% url 'account' %}" class="px-4 py-2 bg-purple-600 text-white rounded">Войти</a>
+    <a href="{% url 'account' %}" class="px-4 py-2 bg-purple-100 text-purple-700 rounded">Регистрация</a>
+{% endif %}
+
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Герой-секция -->
+    <div class="gradient-bg">
+        <div class="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h1 class="text-4xl tracking-tight font-extrabold text-white sm:text-5xl md:text-6xl">
+                    <span class="block">Найдите идеальных партнеров</span>
+                    <span class="block text-purple-200">для вашего бизнеса</span>
+                </h1>
+                <p class="mt-3 max-w-md mx-auto text-base text-purple-100 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
+                    InvestConnect объединяет предпринимателей, инвесторов и спонсоров на одной платформе. Создавайте связи, которые приводят к успеху.
+                </p>
+                <div class="mt-8 flex justify-center">
+                    <div class="inline-flex rounded-md shadow">
+                        <a href="{% url 'new_project' %}" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-purple-600 bg-white hover:bg-gray-50 transition duration-150 ease-in-out">
+                            Начать бесплатно
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Секция возможностей -->
+    <div id="features" class="py-12 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center">
+                <h2 class="text-base text-purple-600 font-semibold tracking-wide uppercase">Возможности</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                    Все, что нужно для успешного партнерства
+                </p>
+                <p class="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
+                    Наша платформа предоставляет инструменты для эффективного поиска и взаимодействия
+                </p>
+            </div>
+
+<div class="feature-card relative p-6 rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition duration-150 ease-in-out">
+    <a
+        href="{% if user.is_authenticated and user.usersubscription.is_pro %}{% url 'advanced_search' %}{% else %}{% url 'plan_detail' %}{% endif %}"
+        class="block"
+        {% if not user.is_authenticated or not user.usersubscription.is_pro %}
+            onclick="alert('Функция доступна только для PRO-подписчиков'); return false;"
+        {% endif %}
+    >
+        <div class="flex items-center">
+            <div class="flex-shrink-0 bg-purple-50 rounded-md p-3">
+                <i class="feature-icon fas fa-search-dollar text-purple-600 text-2xl"></i>
+            </div>
+            <div class="ml-4">
+                <h3 class="text-lg leading-6 font-medium text-gray-900">Расширенный поиск</h3>
+                <p class="mt-2 text-base text-gray-500">
+                    Фильтруйте инвесторов и партнеров по отраслям, сумме инвестиций, географии и другим параметрам.
+                </p>
+            </div>
+        </div>
+    </a>
+</div>
+
+
+                    <!-- Карточка 2 -->
+<div class="feature-card relative p-6 rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition duration-150 ease-in-out">
+    <a
+        href="{% if user.is_authenticated and user.usersubscription.is_pro %}{% url 'analytics' %}{% else %}{% url 'plan_detail' %}{% endif %}"
+        class="block"
+        {% if not user.is_authenticated or not user.usersubscription.is_pro %}
+            onclick="alert('Раздел аналитики доступен только для PRO-подписчиков'); return false;"
+        {% endif %}
+    >
+        <div class="flex items-center">
+            <div class="flex-shrink-0 bg-purple-50 rounded-md p-3">
+                <i class="feature-icon fas fa-chart-line text-purple-600 text-2xl"></i>
+            </div>
+            <div class="ml-4">
+                <h3 class="text-lg leading-6 font-medium text-gray-900">Аналитика и отчеты</h3>
+                <p class="mt-2 text-base text-gray-500">
+                    Получайте аналитические отчеты о потенциальных партнерах и тенденциях инвестирования.
+                </p>
+            </div>
+        </div>
+    </a>
+</div>
+
+
+                    <!-- Карточка 3 -->
+                    <div class="feature-card relative p-6 rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition duration-150 ease-in-out">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0 bg-purple-50 rounded-md p-3">
+                                <i class="feature-icon fas fa-comments text-purple-600 text-2xl"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg leading-6 font-medium text-gray-900">Безопасные переговоры</h3>
+                                <p class="mt-2 text-base text-gray-500">
+                                    Встроенная система сообщений и видеозвонков для безопасного общения с потенциальными партнерами.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Карточка 4 -->
+                    <div class="feature-card relative p-6 rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition duration-150 ease-in-out">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0 bg-purple-50 rounded-md p-3">
+                                <i class="feature-icon fas fa-file-contract text-purple-600 text-2xl"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg leading-6 font-medium text-gray-900">Юридическая поддержка</h3>
+                                <p class="mt-2 text-base text-gray-500">
+                                    Шаблоны договоров и доступ к юристам для оформления партнерских соглашений.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Как это работает -->
+    <div id="how-it-works" class="py-12 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center">
+                <h2 class="text-base text-purple-600 font-semibold tracking-wide uppercase">Процесс</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                    Как работает InvestConnect
+                </p>
+                <p class="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
+                    Всего 4 простых шага к успешному партнерству
+                </p>
+            </div>
+
+            <div class="mt-10">
+                <div class="relative">
+                    <div class="hidden md:block absolute top-0 left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-purple-200"></div>
+
+                    <div class="relative space-y-10">
+                        <!-- Шаг 1 -->
+                        <div class="md:flex md:items-center md:group">
+                            <div class="md:flex-shrink-0 md:flex md:items-center md:justify-center w-16 h-16 rounded-full bg-purple-100 text-purple-600 border-2 border-purple-200 mx-auto md:mx-0">
+                                <span class="text-xl font-bold">1</span>
+                            </div>
+                            <div class="mt-4 md:mt-0 md:ml-6">
+                                <h3 class="text-lg font-medium text-gray-900">Создайте профиль</h3>
+                                <p class="mt-2 text-base text-gray-600">
+                                    Заполните информацию о себе или своем бизнесе. Укажите цели, требования и условия сотрудничества.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Шаг 2 -->
+                        <div class="md:flex md:items-center md:group">
+                            <div class="md:flex-shrink-0 md:flex md:items-center md:justify-center w-16 h-16 rounded-full bg-purple-100 text-purple-600 border-2 border-purple-200 mx-auto md:mx-0">
+                                <span class="text-xl font-bold">2</span>
+                            </div>
+                            <div class="mt-4 md:mt-0 md:ml-6">
+                                <h3 class="text-lg font-medium text-gray-900">Найдите партнеров</h3>
+                                <p class="mt-2 text-base text-gray-600">
+                                    Используйте умный поиск и рекомендательную систему для нахождения идеальных совпадений.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Шаг 3 -->
+                        <div class="md:flex md:items-center md:group">
+                            <div class="md:flex-shrink-0 md:flex md:items-center md:justify-center w-16 h-16 rounded-full bg-purple-100 text-purple-600 border-2 border-purple-200 mx-auto md:mx-0">
+                                <span class="text-xl font-bold">3</span>
+                            </div>
+                            <div class="mt-4 md:mt-0 md:ml-6">
+                                <h3 class="text-lg font-medium text-gray-900">Начните общение</h3>
+                                <p class="mt-2 text-base text-gray-600">
+                                    Свяжитесь с потенциальными партнерами через безопасную систему сообщений или организуйте видеовстречу.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Шаг 4 -->
+                        <div class="md:flex md:items-center md:group">
+                            <div class="md:flex-shrink-0 md:flex md:items-center md:justify-center w-16 h-16 rounded-full bg-purple-100 text-purple-600 border-2 border-purple-200 mx-auto md:mx-0">
+                                <span class="text-xl font-bold">4</span>
+                            </div>
+                            <div class="mt-4 md:mt-0 md:ml-6">
+                                <h3 class="text-lg font-medium text-gray-900">Заключите сделку</h3>
+                                <p class="mt-2 text-base text-gray-600">
+                                    Используйте наши инструменты для оформления партнерства и начните совместную работу.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- Отзывы -->
+<div id="testimonials" class="py-12 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="lg:text-center">
+            <h2 class="text-base text-purple-600 font-semibold tracking-wide uppercase">Отзывы</h2>
+            <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                Что говорят наши пользователи
+            </p>
+        </div>
+
+        <div class="mt-10 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {% for review in feedbacks %}
+            <div class="card-hover bg-gray-50 p-6 rounded-lg shadow-sm transition duration-150 ease-in-out">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <img class="h-12 w-12 rounded-full" src="https://randomuser.me/api/portraits/lego/{{ forloop.counter }}.jpg" alt="{{ review.name }}">
+                    </div>
+                    <div class="ml-4">
+                        <h4 class="text-lg font-medium text-gray-900">{{ review.name }}</h4>
+                        <p class="text-purple-600">{{ review.role }}</p>
+                    </div>
+                </div>
+                <p class="mt-4 text-gray-600">"{{ review.message }}"</p>
+                <div class="mt-4 flex text-yellow-400">
+                    {% for i in "12345"|slice:":review.rating" %}
+                        <i class="fas fa-star"></i>
+                    {% endfor %}
+                    {% for i in "12345"|slice:"review.rating:" %}
+                        <i class="far fa-star"></i>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="mt-8 text-center space-x-4">
+            <a href="{% url 'all_reviews' %}" class="inline-block px-6 py-3 border border-purple-600 text-purple-600 rounded hover:bg-purple-100 transition">
+                Смотреть все отзывы
+            </a>
+            <a href="{% url 'feedback' %}" class="inline-block px-6 py-3 bg-purple-600 text-white rounded hover:bg-purple-700 transition">
+                Оставить отзыв
+            </a>
+        </div>
+    </div>
+</div>
+
+
+
+    <!-- Тарифы -->
+    <div id="pricing" class="py-12 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center">
+                <h2 class="text-base text-purple-600 font-semibold tracking-wide uppercase">Тарифы</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                    Выберите подходящий план
+                </p>
+                <p class="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
+                    Гибкие варианты для разных потребностей
+                </p>
+            </div>
+
+            <div class="mt-10 space-y-8 lg:space-y-0 lg:grid lg:grid-cols-3 lg:gap-x-8">
+                <!-- Базовый тариф -->
+                <div class="card-hover relative p-6 bg-white border border-gray-200 rounded-lg shadow-sm transition duration-150 ease-in-out">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="text-lg font-medium text-gray-900">Базовый</h3>
+                            <p class="mt-2 text-sm text-gray-500">Для начинающих предпринимателей</p>
+                        </div>
+                        <div class="flex-shrink-0 bg-purple-100 rounded-full p-1">
+                            <i class="fas fa-user text-purple-600 text-xl"></i>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <p class="text-4xl font-extrabold text-gray-900">KZT 0<span class="text-base font-medium text-gray-500">/мес</span></p>
+                        <p class="mt-1 text-sm text-gray-500">Бесплатно навсегда</p>
+                    </div>
+                    <ul class="mt-6 space-y-4">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span class="text-base text-gray-700">5 контактов в месяц</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span class="text-base text-gray-700">Базовый поиск</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span class="text-base text-gray-700">Обмен сообщениями</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-times text-gray-300 mt-1 mr-2"></i>
+                            <span class="text-base text-gray-500">Аналитика</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-times text-gray-300 mt-1 mr-2"></i>
+                            <span class="text-base text-gray-500">Приоритет в поиске</span>
+                        </li>
+                    </ul>
+                    <div class="mt-8">
+                        <a href="#" class="block w-full py-3 px-6 border border-transparent rounded-md text-center font-medium text-purple-700 bg-purple-50 hover:bg-purple-100 transition duration-150 ease-in-out">
+                            Начать бесплатно
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Профессиональный тариф -->
+                <div class="card-hover relative p-8 bg-white border-2 border-purple-500 rounded-lg shadow-lg transition duration-150 ease-in-out transform scale-105">
+                    <div class="absolute top-0 right-0 -mt-4 -mr-4 bg-purple-600 text-white text-xs font-bold px-3 py-1 rounded-full">
+                        Популярный
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="text-lg font-medium text-gray-900">Профессиональный</h3>
+                            <p class="mt-2 text-sm text-gray-500">Для активного поиска партнеров</p>
+                        </div>
+                        <div class="flex-shrink-0 bg-purple-100 rounded-full p-1">
+                            <i class="fas fa-briefcase text-purple-600 text-xl"></i>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <p class="text-4xl font-extrabold text-gray-900">KZT 4,900<span class="text-base font-medium text-gray-500">/мес</span></p>
+                        <p class="mt-1 text-sm text-gray-500">или KZT 49,000 при оплате за год</p>
+                    </div>
+                    <ul class="mt-6 space-y-4">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span class="text-base text-gray-700">30 контактов в месяц</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span class="text-base text-gray-700">Расширенный поиск</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span class="text-base text-gray-700">Видеозвонки</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span class="text-base text-gray-700">Базовая аналитика</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span class="text-base text-gray-700">Приоритет в поиске</span>
+                        </li>
+                    </ul>
+                    <div class="mt-8">
+                        <a href="{% url 'plan_detail' %}" class="block w-full py-3 px-6 border border-transparent rounded-md text-center font-medium text-white bg-purple-600 hover:bg-purple-700 transition duration-150 ease-in-out">
+    Попробовать 7 дней бесплатно
+</a>
+                    </div>
+                </div>
+
+                <!-- Бизнес тариф -->
+                <div class="card-hover relative p-6 bg-white border border-gray-200 rounded-lg shadow-sm transition duration-150 ease-in-out">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="text-lg font-medium text-gray-900">Бизнес</h3>
+                            <p class="mt-2 text-sm text-gray-500">Для корпоративных клиентов</p>
+                        </div>
+                        <div class="flex-shrink-0 bg-purple-100 rounded-full p-1">
+                            <i class="fas fa-building text-purple-600 text-xl"></i>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <p class="text-4xl font-extrabold text-gray-900">KZT 14,900<span class="text-base font-medium text-gray-500">/мес</span></p>
+                        <p class="mt-1 text-sm text-gray-500">или KZT 149,000 при оплате за год</p>
+                    </div>
+                    <ul class="mt-6 space-y-4">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span class="text-base text-gray-700">Неограниченные контакты</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span class="text-base text-gray-700">Премиум поиск</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span class="text-base text-gray-700">Персональный менеджер</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span class="text-base text-gray-700">Расширенная аналитика</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span class="text-base text-gray-700">Высший приоритет</span>
+                        </li>
+                    </ul>
+                    <div class="mt-8">
+                        <a href="#" class="block w-full py-3 px-6 border border-transparent rounded-md text-center font-medium text-purple-700 bg-purple-50 hover:bg-purple-100 transition duration-150 ease-in-out">
+                            Запросить демо
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA секция -->
+    <div class="gradient-bg">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center lg:justify-between">
+            <h2 class="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+                <span class="block">Готовы найти идеальных партнеров?</span>
+                <span class="block text-purple-200">Начните прямо сейчас.</span>
+            </h2>
+            <div class="mt-8 flex lg:mt-0 lg:flex-shrink-0">
+                <div class="inline-flex rounded-md shadow">
+                    <a href="#" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-purple-600 bg-white hover:bg-gray-50 transition duration-150 ease-in-out">
+                        Зарегистрироваться
+                    </a>
+                </div>
+                <div class="ml-3 inline-flex">
+                    <a href="#" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-purple-500 bg-opacity-60 hover:bg-opacity-70 transition duration-150 ease-in-out">
+                        Связаться с нами
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Футер -->
+    <footer class="bg-white">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
+            <div class="xl:grid xl:grid-cols-3 xl:gap-8">
+                <div class="space-y-8 xl:col-span-1">
+                    <div class="flex items-center">
+                        <i class="fas fa-handshake text-purple-600 text-2xl mr-2"></i>
+                        <span class="text-xl font-bold text-gray-900">InvestConnect</span>
+                    </div>
+                    <p class="text-gray-500 text-base">
+                        Платформа для поиска партнеров, спонсоров и инвесторов. Создаем связи, которые приводят к успеху.
+                    </p>
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-gray-400 hover:text-gray-500">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-gray-500">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-gray-500">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-gray-500">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="mt-12 grid grid-cols-2 gap-8 xl:mt-0 xl:col-span-2">
+                    <div class="md:grid md:grid-cols-2 md:gap-8">
+                        <div>
+                            <h3 class="text-sm font-semibold text-gray-900 tracking-wider uppercase">
+                                Компания
+                            </h3>
+                            <ul class="mt-4 space-y-4">
+                                <li>
+                                    <a href="#" class="text-base text-gray-500 hover:text-gray-900">
+                                        О нас
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-base text-gray-500 hover:text-gray-900">
+                                        Блог
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-base text-gray-500 hover:text-gray-900">
+                                        Карьера
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-base text-gray-500 hover:text-gray-900">
+                                        Контакты
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="mt-12 md:mt-0">
+                            <h3 class="text-sm font-semibold text-gray-900 tracking-wider uppercase">
+                                Ресурсы
+                            </h3>
+                            <ul class="mt-4 space-y-4">
+                                <li>
+                                    <a href="#" class="text-base text-gray-500 hover:text-gray-900">
+                                        Помощь
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-base text-gray-500 hover:text-gray-900">
+                                        Вебинары
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-base text-gray-500 hover:text-gray-900">
+                                        Гайды
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-base text-gray-500 hover:text-gray-900">
+                                        Партнерская программа
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="md:grid md:grid-cols-2 md:gap-8">
+                        <div>
+                            <h3 class="text-sm font-semibold text-gray-900 tracking-wider uppercase">
+                                Правовая информация
+                            </h3>
+                            <ul class="mt-4 space-y-4">
+                                <li>
+                                    <a href="#" class="text-base text-gray-500 hover:text-gray-900">
+                                        Политика конфиденциальности
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-base text-gray-500 hover:text-gray-900">
+                                        Условия использования
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-base text-gray-500 hover:text-gray-900">
+                                        Правовая информация
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="mt-12 md:mt-0">
+                            <h3 class="text-sm font-semibold text-gray-900 tracking-wider uppercase">
+                                Подписаться на рассылку
+                            </h3>
+                            <p class="mt-4 text-base text-gray-500">
+                                Получайте последние новости и предложения
+                            </p>
+                            <form class="mt-4 sm:flex">
+                                <label for="email" class="sr-only">Email</label>
+                                <input id="email" type="email" required class="w-full px-5 py-3 border border-gray-300 shadow-sm placeholder-gray-400 focus:ring-purple-500 focus:border-purple-500 sm:max-w-xs rounded-md" placeholder="Ваш email">
+                                <div class="mt-3 rounded-md shadow sm:mt-0 sm:ml-3 sm:flex-shrink-0">
+                                    <button type="submit" class="w-full flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition duration-150 ease-in-out">
+                                        Подписаться
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-12 border-t border-gray-200 pt-8">
+                <p class="text-base text-gray-400 text-center">
+                    &copy; 2025 InvestConnect. Все права защищены.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Анимация при загрузке страницы
+        document.addEventListener('DOMContentLoaded', function() {
+            const elements = document.querySelectorAll('.card-hover, .feature-card, .animated-underline');
+
+            elements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            });
+
+            setTimeout(() => {
+                elements.forEach((el, index) => {
+                    setTimeout(() => {
+                        el.style.opacity = '1';
+                        el.style.transform = 'translateY(0)';
+                    }, 100 * index);
+                });
+            }, 300);
+
+            // Плавная прокрутка для якорных ссылок
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    const targetId = this.getAttribute('href');
+                    if(targetId === '#') return;
+
+                    const targetElement = document.querySelector(targetId);
+                    if(targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

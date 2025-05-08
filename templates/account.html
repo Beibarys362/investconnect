@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block title %}Аккаунт{% endblock %}
+
+{% block content %}
+<div class="max-w-md mx-auto py-10">
+    <div class="flex justify-center mb-6">
+        <button id="show-login" class="px-4 py-2 bg-purple-600 text-white rounded-l-md">Вход</button>
+        <button id="show-register" class="px-4 py-2 bg-purple-400 text-white rounded-r-md">Регистрация</button>
+    </div>
+
+    {% if messages %}
+        <div class="mb-4">
+            {% for message in messages %}
+                <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-2 rounded">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <!-- Форма Входа -->
+    <div id="login-form" class="bg-white p-6 rounded-lg shadow-md">
+        <form method="post">
+            {% csrf_token %}
+            <input type="text" name="username" placeholder="Логин" class="w-full border rounded mb-4 px-3 py-2">
+            <input type="password" name="password" placeholder="Пароль" class="w-full border rounded mb-4 px-3 py-2">
+            <button type="submit" class="w-full bg-purple-600 text-white py-2 rounded">Войти</button>
+        </form>
+    </div>
+
+    <!-- Форма Регистрации -->
+    <div id="register-form" class="bg-white p-6 rounded-lg shadow-md hidden">
+        <form method="post">
+            {% csrf_token %}
+            <input type="text" name="username" placeholder="Логин" class="w-full border rounded mb-4 px-3 py-2">
+            <input type="password" name="password1" placeholder="Пароль" class="w-full border rounded mb-4 px-3 py-2">
+            <input type="password" name="password2" placeholder="Подтвердите пароль" class="w-full border rounded mb-4 px-3 py-2">
+            <button type="submit" class="w-full bg-purple-600 text-white py-2 rounded">Зарегистрироваться</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    const loginForm = document.getElementById('login-form');
+    const registerForm = document.getElementById('register-form');
+    const showLoginBtn = document.getElementById('show-login');
+    const showRegisterBtn = document.getElementById('show-register');
+
+    showLoginBtn.addEventListener('click', () => {
+        loginForm.classList.remove('hidden');
+        registerForm.classList.add('hidden');
+    });
+
+    showRegisterBtn.addEventListener('click', () => {
+        registerForm.classList.remove('hidden');
+        loginForm.classList.add('hidden');
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block title %}Аккаунт{% endblock %}
+
+{% block content %}
+<div class="max-w-md mx-auto py-10">
+    <div class="flex justify-center mb-6">
+        <button id="show-login" class="px-4 py-2 bg-purple-600 text-white rounded-l-md focus:outline-none">Вход</button>
+        <button id="show-register" class="px-4 py-2 bg-purple-400 text-white rounded-r-md focus:outline-none">Регистрация</button>
+    </div>
+
+    <!-- Форма Входа -->
+    <div id="login-form" class="bg-white p-6 rounded-lg shadow-md">
+        <h2 class="text-2xl font-bold mb-6 text-center">Вход</h2>
+        <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            <div class="space-y-4">
+                <div>
+                    <label for="username">Логин:</label>
+                    <input type="text" name="username" id="username" class="w-full border rounded px-3 py-2">
+                </div>
+                <div>
+                    <label for="password">Пароль:</label>
+                    <input type="password" name="password" id="password" class="w-full border rounded px-3 py-2">
+                </div>
+            </div>
+            <button type="submit" class="mt-6 w-full bg-purple-600 text-white py-2 rounded">Войти</button>
+        </form>
+    </div>
+
+    <!-- Форма Регистрации -->
+    <div id="register-form" class="bg-white p-6 rounded-lg shadow-md hidden">
+        <h2 class="text-2xl font-bold mb-6 text-center">Регистрация</h2>
+        <form method="post" action="{% url 'register' %}">
+            {% csrf_token %}
+            <div class="space-y-4">
+                <div>
+                    <label for="id_username">Логин:</label>
+                    <input type="text" name="username" id="id_username" class="w-full border rounded px-3 py-2">
+                </div>
+                <div>
+                    <label for="id_password1">Пароль:</label>
+                    <input type="password" name="password1" id="id_password1" class="w-full border rounded px-3 py-2">
+                </div>
+                <div>
+                    <label for="id_password2">Подтвердите пароль:</label>
+                    <input type="password" name="password2" id="id_password2" class="w-full border rounded px-3 py-2">
+                </div>
+            </div>
+            <button type="submit" class="mt-6 w-full bg-purple-600 text-white py-2 rounded">Зарегистрироваться</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    const loginForm = document.getElementById('login-form');
+    const registerForm = document.getElementById('register-form');
+    const showLoginBtn = document.getElementById('show-login');
+    const showRegisterBtn = document.getElementById('show-register');
+
+    showLoginBtn.addEventListener('click', () => {
+        loginForm.classList.remove('hidden');
+        registerForm.classList.add('hidden');
+        showLoginBtn.classList.add('bg-purple-600');
+        showLoginBtn.classList.remove('bg-purple-400');
+        showRegisterBtn.classList.remove('bg-purple-600');
+        showRegisterBtn.classList.add('bg-purple-400');
+    });
+
+    showRegisterBtn.addEventListener('click', () => {
+        registerForm.classList.remove('hidden');
+        loginForm.classList.add('hidden');
+        showRegisterBtn.classList.add('bg-purple-600');
+        showRegisterBtn.classList.remove('bg-purple-400');
+        showLoginBtn.classList.remove('bg-purple-600');
+        showLoginBtn.classList.add('bg-purple-400');
+    });
+</script>
+{% endblock %}

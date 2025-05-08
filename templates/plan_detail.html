@@ -1,0 +1,481 @@
+{% extends 'base.html' %}
+
+{% block title %}Профессиональный тариф{% endblock %}
+
+{% block content %}
+<body class="font-sans antialiased text-gray-800">
+    <!-- Навигация -->
+
+    <!-- Основной контент -->
+    <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+        <div class="lg:grid lg:grid-cols-12 lg:gap-x-8">
+            <!-- Информация о тарифе -->
+            <div class="lg:col-span-7">
+                <div class="mb-8">
+                    <a href="index.html#pricing" class="inline-flex items-center text-purple-600 hover:text-purple-800">
+                        <i class="fas fa-arrow-left mr-2"></i>
+                        Вернуться к тарифам
+                    </a>
+                </div>
+
+                <h1 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                    Профессиональный тариф
+                </h1>
+                <p class="mt-4 text-xl text-gray-600">
+                    Идеальное решение для активного поиска партнеров и инвесторов
+                </p>
+
+                <div class="mt-8 bg-white border border-gray-200 rounded-lg shadow-sm p-6">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="text-lg font-medium text-gray-900">Профессиональный</h3>
+                            <p class="mt-2 text-sm text-gray-500">Для активного поиска партнеров</p>
+                        </div>
+                        <div class="flex-shrink-0 bg-purple-100 rounded-full p-3">
+                            <i class="fas fa-briefcase text-purple-600 text-xl"></i>
+                        </div>
+                    </div>
+                    <div class="mt-6">
+                        <p class="text-4xl font-extrabold text-gray-900">₽4,900<span class="text-base font-medium text-gray-500">/мес</span></p>
+                        <p class="mt-1 text-sm text-gray-500">или ₽49,000 при оплате за год (экономия 2 месяца)</p>
+                    </div>
+                    <ul class="mt-6 space-y-4">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span class="text-base text-gray-700">30 контактов в месяц</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span class="text-base text-gray-700">Расширенный поиск с фильтрами</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span class="text-base text-gray-700">Видеозвонки прямо на платформе</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span class="text-base text-gray-700">Базовая аналитика и отчеты</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span class="text-base text-gray-700">Приоритет в поиске и рекомендациях</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span class="text-base text-gray-700">Поддержка 24/7</span>
+                        </li>
+                    </ul>
+
+                    <div class="mt-8">
+                        <div class="flex items-center">
+                            <i class="fas fa-gift text-purple-600 mr-2"></i>
+                            <span class="text-sm text-gray-600">При оплате годового тарифа — 2 месяца в подарок</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-8 bg-white border border-gray-200 rounded-lg shadow-sm p-6">
+                    <h3 class="text-lg font-medium text-gray-900">Часто задаваемые вопросы</h3>
+                    <div class="mt-6 space-y-4">
+                        <div>
+                            <button class="flex justify-between items-center w-full text-left text-purple-600 hover:text-purple-800">
+                                <span>Можно ли изменить тариф позже?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="mt-2 text-gray-600">
+                                Да, вы можете в любой момент перейти на другой тариф. При этом неиспользованные средства будут пересчитаны.
+                            </div>
+                        </div>
+                        <div>
+                            <button class="flex justify-between items-center w-full text-left text-purple-600 hover:text-purple-800">
+                                <span>Есть ли пробный период?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="mt-2 text-gray-600">
+                                Для профессионального тарифа доступен 7-дневный пробный период без оплаты.
+                            </div>
+                        </div>
+                        <div>
+                            <button class="flex justify-between items-center w-full text-left text-purple-600 hover:text-purple-800">
+                                <span>Как происходит оплата?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="mt-2 text-gray-600">
+                                Оплата происходит автоматически каждый месяц или год, в зависимости от выбранного периода. Вы можете отменить подписку в любой момент.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Форма оплаты -->
+            <div class="mt-12 lg:mt-0 lg:col-span-5">
+                <div class="bg-white border border-gray-200 rounded-lg shadow-sm p-6 sticky top-8">
+                    <h2 class="text-lg font-medium text-gray-900">Оформление подписки</h2>
+
+                    <div class="mt-6">
+                        <label class="block text-sm font-medium text-gray-700">Период оплаты</label>
+                        <div class="mt-2 grid grid-cols-2 gap-4">
+                            <button id="monthly" class="payment-period py-3 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 selected">
+                                Ежемесячно
+                                <div class="mt-1 text-xs text-gray-500">₽4,900/мес</div>
+                            </button>
+                            <button id="yearly" class="payment-period py-3 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
+                                Ежегодно
+                                <div class="mt-1 text-xs text-gray-500">₽49,000/год</div>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="mt-6">
+                        <label class="block text-sm font-medium text-gray-700">Способ оплаты</label>
+                        <div class="mt-2 space-y-3">
+                            <div class="payment-method p-4 border border-gray-300 rounded-md cursor-pointer selected">
+                                <div class="flex items-center">
+                                    <div class="flex-shrink-0">
+                                        <i class="fab fa-cc-visa text-blue-600 text-2xl"></i>
+                                    </div>
+                                    <div class="ml-4">
+                                        <div class="text-sm font-medium text-gray-900">Банковская карта</div>
+                                        <div class="text-xs text-gray-500">Visa, Mastercard, Мир</div>
+                                    </div>
+                                    <div class="ml-auto">
+                                        <i class="fas fa-check-circle text-purple-600"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="payment-method p-4 border border-gray-300 rounded-md cursor-pointer">
+                                <div class="flex items-center">
+                                    <div class="flex-shrink-0">
+                                        <i class="fab fa-google-pay text-blue-500 text-2xl"></i>
+                                    </div>
+                                    <div class="ml-4">
+                                        <div class="text-sm font-medium text-gray-900">Google Pay</div>
+                                        <div class="text-xs text-gray-500">Быстрая оплата</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="payment-method p-4 border border-gray-300 rounded-md cursor-pointer">
+                                <div class="flex items-center">
+                                    <div class="flex-shrink-0">
+                                        <i class="fab fa-apple-pay text-black text-2xl"></i>
+                                    </div>
+                                    <div class="ml-4">
+                                        <div class="text-sm font-medium text-gray-900">Apple Pay</div>
+                                        <div class="text-xs text-gray-500">Быстрая оплата</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="payment-method p-4 border border-gray-300 rounded-md cursor-pointer">
+                                <div class="flex items-center">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-wallet text-green-600 text-2xl"></i>
+                                    </div>
+                                    <div class="ml-4">
+                                        <div class="text-sm font-medium text-gray-900">Электронные кошельки</div>
+                                        <div class="text-xs text-gray-500">Qiwi, ЮMoney, WebMoney</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-6">
+                        <label for="card-number" class="block text-sm font-medium text-gray-700">Номер карты</label>
+                        <div class="mt-1 relative rounded-md shadow-sm">
+                            <input type="text" id="card-number" name="card-number" class="focus:ring-purple-500 focus:border-purple-500 block w-full pr-10 sm:text-sm border-gray-300 rounded-md" placeholder="0000 0000 0000 0000">
+                            <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                                <i class="far fa-credit-card text-gray-400"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 grid grid-cols-2 gap-4">
+                        <div>
+                            <label for="card-expiry" class="block text-sm font-medium text-gray-700">Срок действия</label>
+                            <div class="mt-1 relative rounded-md shadow-sm">
+                                <input type="text" id="card-expiry" name="card-expiry" class="focus:ring-purple-500 focus:border-purple-500 block w-full pr-10 sm:text-sm border-gray-300 rounded-md" placeholder="ММ/ГГ">
+                                <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                                    <i class="far fa-calendar-alt text-gray-400"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="card-cvc" class="block text-sm font-medium text-gray-700">CVC</label>
+                            <div class="mt-1 relative rounded-md shadow-sm">
+                                <input type="text" id="card-cvc" name="card-cvc" class="focus:ring-purple-500 focus:border-purple-500 block w-full pr-10 sm:text-sm border-gray-300 rounded-md" placeholder="000">
+                                <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                                    <i class="fas fa-lock text-gray-400"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-6">
+                        <label for="email" class="block text-sm font-medium text-gray-700">Email для чека</label>
+                        <div class="mt-1 relative rounded-md shadow-sm">
+                            <input type="email" id="email" name="email" class="focus:ring-purple-500 focus:border-purple-500 block w-full pr-10 sm:text-sm border-gray-300 rounded-md" placeholder="your@email.com">
+                            <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                                <i class="far fa-envelope text-gray-400"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-6">
+                        <div class="flex items-start">
+                            <div class="flex items-center h-5">
+                                <input id="terms" name="terms" type="checkbox" class="focus:ring-purple-500 h-4 w-4 text-purple-600 border-gray-300 rounded">
+                            </div>
+                            <div class="ml-3 text-sm">
+                                <label for="terms" class="font-medium text-gray-700">Я согласен с <a href="#" class="text-purple-600 hover:text-purple-500">условиями подписки</a></label>
+                                <p class="text-gray-500">Вы будете подписаны на автоматическое продление, которое можно отменить в любой момент.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8">
+<form method="post" action="{% url 'plan_detail' %}">
+    {% csrf_token %}
+    <button type="submit" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition duration-150 ease-in-out">
+        Оплатить ₽4,900
+    </button>
+</form>
+
+                    </div>
+
+                    <div class="mt-4 text-center text-sm text-gray-500">
+                        <p>7-дневная гарантия возврата средств</p>
+                    </div>
+
+                    <div class="mt-6 border-t border-gray-200 pt-6">
+                        <div class="flex items-center justify-between text-sm">
+                            <span class="text-gray-600">Итого к оплате</span>
+                            <span class="font-medium text-gray-900">₽4,900</span>
+                        </div>
+                        <div class="mt-2 flex items-center justify-between text-sm">
+                            <span class="text-gray-600">НДС</span>
+                            <span class="font-medium text-gray-900">Включен</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Футер -->
+    <footer class="bg-white border-t border-gray-200 mt-12">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
+            <div class="xl:grid xl:grid-cols-3 xl:gap-8">
+                <div class="space-y-8 xl:col-span-1">
+                    <div class="flex items-center">
+                        <i class="fas fa-handshake text-purple-600 text-2xl mr-2"></i>
+                        <span class="text-xl font-bold text-gray-900">InvestConnect</span>
+                    </div>
+                    <p class="text-gray-500 text-base">
+                        Платформа для поиска партнеров, спонсоров и инвесторов. Создаем связи, которые приводят к успеху.
+                    </p>
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-gray-400 hover:text-gray-500">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-gray-500">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-gray-500">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-gray-500">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="mt-12 grid grid-cols-2 gap-8 xl:mt-0 xl:col-span-2">
+                    <div class="md:grid md:grid-cols-2 md:gap-8">
+                        <div>
+                            <h3 class="text-sm font-semibold text-gray-900 tracking-wider uppercase">
+                                Компания
+                            </h3>
+                            <ul class="mt-4 space-y-4">
+                                <li>
+                                    <a href="#" class="text-base text-gray-500 hover:text-gray-900">
+                                        О нас
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-base text-gray-500 hover:text-gray-900">
+                                        Блог
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-base text-gray-500 hover:text-gray-900">
+                                        Карьера
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-base text-gray-500 hover:text-gray-900">
+                                        Контакты
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="mt-12 md:mt-0">
+                            <h3 class="text-sm font-semibold text-gray-900 tracking-wider uppercase">
+                                Ресурсы
+                            </h3>
+                            <ul class="mt-4 space-y-4">
+                                <li>
+                                    <a href="#" class="text-base text-gray-500 hover:text-gray-900">
+                                        Помощь
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-base text-gray-500 hover:text-gray-900">
+                                        Вебинары
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-base text-gray-500 hover:text-gray-900">
+                                        Гайды
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-base text-gray-500 hover:text-gray-900">
+                                        Партнерская программа
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="md:grid md:grid-cols-2 md:gap-8">
+                        <div>
+                            <h3 class="text-sm font-semibold text-gray-900 tracking-wider uppercase">
+                                Правовая информация
+                            </h3>
+                            <ul class="mt-4 space-y-4">
+                                <li>
+                                    <a href="#" class="text-base text-gray-500 hover:text-gray-900">
+                                        Политика конфиденциальности
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-base text-gray-500 hover:text-gray-900">
+                                        Условия использования
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-base text-gray-500 hover:text-gray-900">
+                                        Правовая информация
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="mt-12 md:mt-0">
+                            <h3 class="text-sm font-semibold text-gray-900 tracking-wider uppercase">
+                                Поддержка
+                            </h3>
+                            <ul class="mt-4 space-y-4">
+                                <li>
+                                    <a href="#" class="text-base text-gray-500 hover:text-gray-900">
+                                        Центр поддержки
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-base text-gray-500 hover:text-gray-900">
+                                        Статус системы
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-base text-gray-500 hover:text-gray-900">
+                                        Контакты поддержки
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-12 border-t border-gray-200 pt-8">
+                <p class="text-base text-gray-400 text-center">
+                    &copy; 2023 InvestConnect. Все права защищены.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Анимация при загрузке страницы
+        document.addEventListener('DOMContentLoaded', function() {
+            // Выбор периода оплаты
+            const paymentPeriods = document.querySelectorAll('.payment-period');
+            paymentPeriods.forEach(period => {
+                period.addEventListener('click', function() {
+                    paymentPeriods.forEach(p => p.classList.remove('selected'));
+                    this.classList.add('selected');
+
+                    // Обновляем цену в кнопке оплаты
+                    const price = this.id === 'monthly' ? '₽4,900' : '₽49,000';
+                    document.querySelector('button[type="submit"]').textContent = `Оплатить ${price}`;
+
+                    // Обновляем итоговую сумму
+                    document.querySelector('.flex.items-center.justify-between.text-sm:first-child span:last-child').textContent = price;
+                });
+            });
+
+            // Выбор способа оплаты
+            const paymentMethods = document.querySelectorAll('.payment-method');
+            paymentMethods.forEach(method => {
+                method.addEventListener('click', function() {
+                    paymentMethods.forEach(m => m.classList.remove('selected'));
+                    this.classList.add('selected');
+                });
+            });
+
+            // Раскрывающиеся FAQ
+            const faqButtons = document.querySelectorAll('button.flex.justify-between.items-center.w-full.text-left');
+            faqButtons.forEach(button => {
+                const content = button.nextElementSibling;
+                content.style.display = 'none';
+
+                button.addEventListener('click', function() {
+                    if (content.style.display === 'none') {
+                        content.style.display = 'block';
+                        this.querySelector('i').classList.replace('fa-chevron-down', 'fa-chevron-up');
+                    } else {
+                        content.style.display = 'none';
+                        this.querySelector('i').classList.replace('fa-chevron-up', 'fa-chevron-down');
+                    }
+                });
+            });
+
+            // Маска для номера карты
+            const cardNumber = document.getElementById('card-number');
+            cardNumber.addEventListener('input', function(e) {
+                let value = this.value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
+                let matches = value.match(/\d{4,16}/g);
+                let match = matches && matches[0] || '';
+                let parts = [];
+
+                for (let i=0, len=match.length; i<len; i+=4) {
+                    parts.push(match.substring(i, i+4));
+                }
+
+                if (parts.length) {
+                    this.value = parts.join(' ');
+                } else {
+                    this.value = value;
+                }
+            });
+
+            // Маска для срока действия карты
+            const cardExpiry = document.getElementById('card-expiry');
+            cardExpiry.addEventListener('input', function(e) {
+                let value = this.value;
+                value = value.replace(/\D/g, '');
+
+                if (value.length > 2) {
+                    this.value = `${value.substring(0, 2)}/${value.substring(2, 4)}`;
+                }
+            });
+        });
+    </script>
+{% endblock %}
