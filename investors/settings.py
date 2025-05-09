@@ -22,6 +22,7 @@ ALLOWED_HOSTS = [
 ]
 
 
+
 # CSRF trusted origins
 CSRF_TRUSTED_ORIGINS = [
     'https://investconnect-production.up.railway.app',

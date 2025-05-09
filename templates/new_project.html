@@ -6,8 +6,8 @@
 <div class="container mx-auto px-4 py-8 max-w-4xl">
     <div class="flex items-center justify-between mb-8">
         <div>
-            <h1 class="text-3xl font-bold text-gray-800">Добавить новый проект</h1>
-            <p class="text-gray-600 mt-2">Заполните информацию о вашем проекте для привлечения инвестиций</p>
+            <h1 class="text-3xl font-bold text-gray-800">Жаңа жоба қосу</h1>
+            <p class="text-gray-600 mt-2">Инвестиция тарту үшін жобаңыз туралы ақпаратты толтырыңыз</p>
         </div>
         <div class="flex items-center">
             <div class="w-48 bg-gray-200 rounded-full h-2.5 mr-4">
@@ -22,25 +22,25 @@
 
         <!-- Step 1 -->
         <div id="step1" class="form-step">
-            <h2 class="text-xl font-semibold mb-6">1. Выберите категорию проекта</h2>
+            <h2 class="text-xl font-semibold mb-6">1. Жобаның категориясын таңдаңыз</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
                 <div class="category-card p-6 border-2 border-gray-200 rounded-xl cursor-pointer" data-category="sponsors" onclick="selectCategory(this, 'sponsors')">
                     <div class="flex items-center mb-3">
                         <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-3">
                             <i class="fas fa-hand-holding-heart text-blue-600"></i>
                         </div>
-                        <h3 class="font-medium text-lg text-gray-800">Для спонсоров</h3>
+                        <h3 class="font-medium text-lg text-gray-800">Спонсорларға</h3>
                     </div>
-                    <p class="text-gray-600 text-sm">Вы ищете спонсорскую поддержку для реализации социального проекта</p>
+                    <p class="text-gray-600 text-sm">Сіз әлеуметтік жобаны жүзеге асыру үшін демеушілік көмек іздеп жүрсіз бе</p>
                 </div>
                 <div class="category-card p-6 border-2 border-gray-200 rounded-xl cursor-pointer" data-category="investors" onclick="selectCategory(this, 'investors')">
                     <div class="flex items-center mb-3">
                         <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center mr-3">
                             <i class="fas fa-chart-line text-green-600"></i>
                         </div>
-                        <h3 class="font-medium text-lg text-gray-800">Для инвесторов</h3>
+                        <h3 class="font-medium text-lg text-gray-800">Инвесторларға</h3>
                     </div>
-                    <p class="text-gray-600 text-sm">Вы предлагаете инвестиционную возможность</p>
+                    <p class="text-gray-600 text-sm">Сіз инвестициялық мүмкіндікті ұсынасыз ба</p>
                 </div>
             </div>
             <input type="hidden" id="projectCategory" name="category" required>
@@ -51,46 +51,46 @@
 
         <!-- Step 2 -->
         <div id="step2" class="form-step hidden">
-            <h2 class="text-xl font-semibold mb-6">2. Основная информация</h2>
+            <h2 class="text-xl font-semibold mb-6">2. Негізгі ақпараттар</h2>
             <div class="space-y-5">
-                <input type="text" name="name" id="projectName" placeholder="Название проекта" required class="w-full px-4 py-2 border rounded">
-                <textarea name="description" id="projectDescription" rows="3" placeholder="Краткое описание" required class="w-full px-4 py-2 border rounded"></textarea>
+                <input type="text" name="name" id="projectName" placeholder="Жобаның аты" required class="w-full px-4 py-2 border rounded">
+                <textarea name="description" id="projectDescription" rows="3" placeholder="Қысқаша мәлімет" required class="w-full px-4 py-2 border rounded"></textarea>
                 <input type="file" name="image" id="projectImage" accept="image/*" class="w-full px-4 py-2 border rounded">
             </div>
             <div class="flex justify-between mt-8">
-                <button type="button" onclick="prevStep()" class="text-gray-600">Назад</button>
-                <button type="button" onclick="nextStep()" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg">Далее</button>
+                <button type="button" onclick="prevStep()" class="text-gray-600">Артқа</button>
+                <button type="button" onclick="nextStep()" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg">Келесі</button>
             </div>
         </div>
 
         <!-- Step 3 -->
         <div id="step3" class="form-step hidden">
-            <h2 class="text-xl font-semibold mb-6">3. Финансовые данные</h2>
+            <h2 class="text-xl font-semibold mb-6">3. Қаржылық деректер</h2>
             <div class="space-y-5">
-                <input type="number" name="required_amount" id="requiredAmount" placeholder="Необходимая сумма (₸)" required class="w-full px-4 py-2 border rounded">
-                <input type="number" name="duration" id="projectDuration" placeholder="Срок реализации (мес)" required class="w-full px-4 py-2 border rounded">
-                <input type="number" name="roi" id="projectROI" step="0.01" placeholder="Ожидаемая доходность (%)" class="w-full px-4 py-2 border rounded">
-                <textarea name="details" id="projectDetails" rows="4" placeholder="Подробности проекта" class="w-full px-4 py-2 border rounded"></textarea>
-                <input type="text" name="tags" id="tags" placeholder="Теги проекта (через запятую)" class="w-full px-4 py-2 border rounded">
+                <input type="number" name="required_amount" id="requiredAmount" placeholder="Қажетті сумма (₸)" required class="w-full px-4 py-2 border rounded">
+                <input type="number" name="duration" id="projectDuration" placeholder="Іске асыру мерзімі (ай)" required class="w-full px-4 py-2 border rounded">
+                <input type="number" name="roi" id="projectROI" step="0.01" placeholder="Күтілетін кірістілік (%)" class="w-full px-4 py-2 border rounded">
+                <textarea name="details" id="projectDetails" rows="4" placeholder="Жобаның егжей-тегжейлері" class="w-full px-4 py-2 border rounded"></textarea>
+                <input type="text" name="tags" id="tags" placeholder="Жоба тегтері (үтір арқылы)" class="w-full px-4 py-2 border rounded">
             </div>
             <div class="flex justify-between mt-8">
-                <button type="button" onclick="prevStep()" class="text-gray-600">Назад</button>
-                <button type="button" onclick="nextStep()" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg">Далее</button>
+                <button type="button" onclick="prevStep()" class="text-gray-600">Артқа</button>
+                <button type="button" onclick="nextStep()" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg">Келесі</button>
             </div>
         </div>
 
         <!-- Step 4 -->
         <div id="step4" class="form-step hidden">
-            <h2 class="text-xl font-semibold mb-6">4. Контактная информация</h2>
+            <h2 class="text-xl font-semibold mb-6">4. Байланыс ақпараты</h2>
             <div class="space-y-5">
-                <input type="text" name="contact_name" id="contactName" placeholder="Контактное лицо" required class="w-full px-4 py-2 border rounded">
+                <input type="text" name="contact_name" id="contactName" placeholder="Байланыс тұлғасы" required class="w-full px-4 py-2 border rounded">
                 <input type="email" name="contact_email" id="contactEmail" placeholder="Email" required class="w-full px-4 py-2 border rounded">
                 <input type="text" name="contact_phone" id="contactPhone" placeholder="Телефон" class="w-full px-4 py-2 border rounded">
-                <input type="url" name="website" id="website" placeholder="Сайт проекта" class="w-full px-4 py-2 border rounded">
+                <input type="url" name="website" id="website" placeholder="Жоба сайты(болса)" class="w-full px-4 py-2 border rounded">
             </div>
             <div class="flex justify-between mt-8">
-                <button type="button" onclick="prevStep()" class="text-gray-600">Назад</button>
-                <button type="submit" class="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg">Отправить проект</button>
+                <button type="button" onclick="prevStep()" class="text-gray-600">Артқа</button>
+                <button type="submit" class="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg">Жобаны жіберу</button>
             </div>
         </div>
     </form>

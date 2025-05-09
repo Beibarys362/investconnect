@@ -52,7 +52,7 @@ def account_view(request):
             if form.is_valid():
                 user = form.save()
                 login(request, user)
-                messages.success(request, f"Добро пожаловать, {user.username}!")
+                messages.success(request, f"Қош келдіңіз, {user.username}!")
                 return redirect('index')
             else:
                 for error in form.errors.values():
@@ -64,10 +64,10 @@ def account_view(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                messages.success(request, f"С возвращением, {user.username}!")
+                messages.success(request, f"Оралуыңызбен, {user.username}!")
                 return redirect('index')
             else:
-                messages.error(request, "Неверный логин или пароль.")
+                messages.error(request, "Қате логин или пароль.")
 
     return render(request, 'account.html', {'form': form})
 
@@ -84,7 +84,7 @@ def plan_detail(request):
             user=request.user,
             defaults={'is_pro': True}
         )
-        messages.success(request, "Вы успешно оформили подписку PRO!")
+        messages.success(request, "Сіз Pro жазылымын сәтті жасадыңыз!")
         return redirect('index')
     return render(request, 'plan_detail.html')
 
@@ -92,7 +92,7 @@ def plan_detail(request):
 @login_required
 def advanced_search(request):
     if not hasattr(request.user, 'usersubscription') or not request.user.usersubscription.is_pro:
-        messages.error(request, "Эта функция доступна только для PRO-подписчиков.")
+        messages.error(request, "Бұл мүмкіндік тек Pro жазылушылары үшін қол жетімді.")
         return redirect('plan_detail')
 
     projects = Project.objects.all()
@@ -117,7 +117,7 @@ from django.contrib.auth.decorators import login_required
 @login_required
 def analytics_view(request):
     if not hasattr(request.user, 'usersubscription') or not request.user.usersubscription.is_pro:
-        messages.error(request, "Доступ к аналитике только для PRO.")
+        messages.error(request, "Тек Pro үшін аналитикаға қол жеткізіңіз.")
         return redirect('plan_detail')
 
     from .models import Project
@@ -162,7 +162,7 @@ def leave_feedback(request):
             rating=rating
         )
 
-        messages.success(request, "Спасибо за отзыв!")
+        messages.success(request, "Пікіріңізге рахмет!")
         return redirect('index')
 
     return render(request, 'feedback.html')

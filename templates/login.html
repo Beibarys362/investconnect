@@ -5,13 +5,13 @@
 {% block content %}
 <div class="max-w-md mx-auto py-10">
     <div class="flex justify-center mb-6">
-        <button id="show-login" class="px-4 py-2 bg-purple-600 text-white rounded-l-md focus:outline-none">Вход</button>
-        <button id="show-register" class="px-4 py-2 bg-purple-400 text-white rounded-r-md focus:outline-none">Регистрация</button>
+        <button id="show-login" class="px-4 py-2 bg-purple-600 text-white rounded-l-md focus:outline-none">Кіру</button>
+        <button id="show-register" class="px-4 py-2 bg-purple-400 text-white rounded-r-md focus:outline-none">Тіркелу</button>
     </div>
 
     <!-- Форма Входа -->
     <div id="login-form" class="bg-white p-6 rounded-lg shadow-md">
-        <h2 class="text-2xl font-bold mb-6 text-center">Вход</h2>
+        <h2 class="text-2xl font-bold mb-6 text-center">Кіру</h2>
         <form method="post" action="{% url 'login' %}">
             {% csrf_token %}
             <div class="space-y-4">
@@ -24,13 +24,13 @@
                     <input type="password" name="password" id="password" class="w-full border rounded px-3 py-2">
                 </div>
             </div>
-            <button type="submit" class="mt-6 w-full bg-purple-600 text-white py-2 rounded">Войти</button>
+            <button type="submit" class="mt-6 w-full bg-purple-600 text-white py-2 rounded">Кіру</button>
         </form>
     </div>
 
     <!-- Форма Регистрации -->
     <div id="register-form" class="bg-white p-6 rounded-lg shadow-md hidden">
-        <h2 class="text-2xl font-bold mb-6 text-center">Регистрация</h2>
+        <h2 class="text-2xl font-bold mb-6 text-center">Тіркелу</h2>
         <form method="post" action="{% url 'register' %}">
             {% csrf_token %}
             <div class="space-y-4">
@@ -47,7 +47,7 @@
                     <input type="password" name="password2" id="id_password2" class="w-full border rounded px-3 py-2">
                 </div>
             </div>
-            <button type="submit" class="mt-6 w-full bg-purple-600 text-white py-2 rounded">Зарегистрироваться</button>
+            <button type="submit" class="mt-6 w-full bg-purple-600 text-white py-2 rounded">Тіркелу</button>
         </form>
     </div>
 </div>

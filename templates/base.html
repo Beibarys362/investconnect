@@ -29,25 +29,25 @@
                     </div>
                 </div>
                 <div class="hidden md:ml-6 md:flex md:items-center md:space-x-8">
-                    <a href="{% url 'index' %}" class="animated-underline px-3 py-2 text-sm font-medium">Главная</a>
-                    <a href="{% url 'new_project' %}" class="animated-underline px-3 py-2 text-sm font-medium">Добавить проект</a>
+                    <a href="{% url 'index' %}" class="animated-underline px-3 py-2 text-sm font-medium">Бастапқы бет</a>
+                    <a href="{% url 'new_project' %}" class="animated-underline px-3 py-2 text-sm font-medium">Жоба салу</a>
                 </div>
 
                 <!-- Блок логина/выхода -->
                 <div class="flex items-center">
 {% if user.is_authenticated %}
     {% if user.usersubscription.is_pro %}
-        <span class="text-green-600 font-semibold">У вас PRO-версия</span>
+        <span class="text-green-600 font-semibold">PRO</span>
     {% else %}
-        <a href="{% url 'plan_detail' %}" class="px-4 py-2 bg-purple-600 text-white rounded">Купить PRO</a>
+        <a href="{% url 'plan_detail' %}" class="px-4 py-2 bg-purple-600 text-white rounded">PRO сатып алу</a>
     {% endif %}
     <form method="post" action="{% url 'logout' %}" class="inline">
         {% csrf_token %}
-        <button type="submit" class="ml-2 px-4 py-2 bg-red-500 text-white rounded">Выйти</button>
+        <button type="submit" class="ml-2 px-4 py-2 bg-red-500 text-white rounded">Шығу</button>
     </form>
 {% else %}
-    <a href="{% url 'account' %}" class="px-4 py-2 bg-purple-600 text-white rounded">Войти</a>
-    <a href="{% url 'account' %}" class="px-4 py-2 bg-purple-100 text-purple-700 rounded">Регистрация</a>
+    <a href="{% url 'account' %}" class="px-4 py-2 bg-purple-600 text-white rounded">Кіру</a>
+    <a href="{% url 'account' %}" class="px-4 py-2 bg-purple-100 text-purple-700 rounded">Тіркелу</a>
 {% endif %}
 
                 </div>

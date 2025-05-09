@@ -5,8 +5,8 @@
 {% block content %}
 <div class="max-w-md mx-auto py-10">
     <div class="flex justify-center mb-6">
-        <button id="show-login" class="px-4 py-2 bg-purple-600 text-white rounded-l-md">Вход</button>
-        <button id="show-register" class="px-4 py-2 bg-purple-400 text-white rounded-r-md">Регистрация</button>
+        <button id="show-login" class="px-4 py-2 bg-purple-600 text-white rounded-l-md">Кіру</button>
+        <button id="show-register" class="px-4 py-2 bg-purple-400 text-white rounded-r-md">Тіркелу</button>
     </div>
 
     {% if messages %}
@@ -25,7 +25,7 @@
             {% csrf_token %}
             <input type="text" name="username" placeholder="Логин" class="w-full border rounded mb-4 px-3 py-2">
             <input type="password" name="password" placeholder="Пароль" class="w-full border rounded mb-4 px-3 py-2">
-            <button type="submit" class="w-full bg-purple-600 text-white py-2 rounded">Войти</button>
+            <button type="submit" class="w-full bg-purple-600 text-white py-2 rounded">Кіру</button>
         </form>
     </div>
 
@@ -36,7 +36,7 @@
             <input type="text" name="username" placeholder="Логин" class="w-full border rounded mb-4 px-3 py-2">
             <input type="password" name="password1" placeholder="Пароль" class="w-full border rounded mb-4 px-3 py-2">
             <input type="password" name="password2" placeholder="Подтвердите пароль" class="w-full border rounded mb-4 px-3 py-2">
-            <button type="submit" class="w-full bg-purple-600 text-white py-2 rounded">Зарегистрироваться</button>
+            <button type="submit" class="w-full bg-purple-600 text-white py-2 rounded">Тіркелу</button>
         </form>
     </div>
 </div>
